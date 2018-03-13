@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <script src="../js/angular.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../css/main.css">
+   <title>主页</title>
+   </head>
+   <body ng-app="myapp">
+      <div ng-controller="MainController" class="main">
+        <h2>用户信息</h2>
+        <table>
+          <tr>
+            <td>序号</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>年龄</td>
+            <td>注册时间</td>
+            <td>操作</td>
+          </tr>
+          <tr ng-repeat="item in items">
+            <td>{{$index + 1}}</td>
+            <td ng-click="view(item.id)">{{item.userName}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.date}}</td>
+            <td ng-click="delete($index)">删除</td>
+          </tr>
+          <tr ng-show="lineShow" class="new-line">
+            <td>{{items.length + 1}}</td>
+            <td><input type="text" ng-model="newUsername" placeholder="请输入新的用户名"></td>
+            <td><input type="password" ng-model="newPassword" placeholder="请输入密码"></td>
+            <td><input type="text" ng-model="newAge" placeholder="请输入年龄"></td>
+            <td>------</td>
+            <!-- <td>{{nowDate}}</td> -->
+            <td ng-click="add()">确定</td>
+          </tr>
+        </table>
+        <div class="add-line" ng-click="show()">添加新用户</div>
+      </div>
+      <script>
+          let app = angular.module("myapp", []) ;
+          app.controller("MainController", function($scope , $interval) {
+            $scope.newUsername = '';
+            $scope.newPassword = '';
+            $scope.newAge = '';
+            $scope.random = '';
+            $scope.nowDate = function(){
+              let date = new Date();
+              let year = date.getFullYear() ;
+              let month = date.getMonth() +1 ;
+              let day = date.getDate() ;
+              let hour = date.getHours()>10?date.getHours():"0"+date.getHours();
+              let minute = date.getMinutes()>10?date.getMinutes():"0"+date.getMinutes();
+              let second = date.getSeconds()>10?date.getSeconds():"0"+date.getSeconds();
+              return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+              /*let nowDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+              return nowDate;*/
+            }
+            $scope.nowDate = $scope.nowDate();
+            $interval(function () {
+                $scope.nowDate = $scope.nowDate();
+            }, 1000);
+            $scope.items = [
+              {id:"2",userName: "X", password: '123456', age: '22' , date:'2017-12-12 10:20:45'},
+              {id:"10",userName: "Xie", password: '123456', age: '23' , date:'2017-12-12 14:23:45'}
+            ];
+            $scope.lineShow = false;
+            $scope.view = function(detail_id){
+              location.href = 'detail.html?detail_id=' + detail_id;
+            }
+            $scope.delete = function(index){
+              $scope.items.splice(index, 1);
+            }
+            $scope.add = function(){
+              $scope.random = Math.ceil(Math.random()*10000) ;
+              $scope.items.push({id: $scope.random, userName: $scope.newUsername, password: $scope.newPassword, age: $scope.newAge , date : $scope.nowDate});
+              $scope.random = '';
+              $scope.newUsername = '';
+              $scope.newPassword = '';
+              $scope.newAge = '';
+              $scope.lineShow = false;
+            }
+            $scope.show = function(){
+              $scope.lineShow = true;
+            }
+          });  
+      </script>
+   </body>
+</html>

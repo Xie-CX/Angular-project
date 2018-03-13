@@ -1,0 +1,50 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+.cc{
+  *zoom:1;
+}
+
+.cc:after{
+  display:table; line-height:0; content:""; clear:both;
+}
+
+.login-form{
+	width:40%;
+	margin:20px auto 0;
+	padding: 20px 50px 50px;
+	border:1px solid RGB(135,206,235);
+}
+.login-form h2{
+	text-align: center;
+	margin-bottom:30px;
+}
+.login-form .input-form{
+	height:60px;
+}
+.login-form .input-form label{
+	width:20%;
+	height:60px;
+	line-height:60px;
+	display:inline-block;
+	text-align: center;
+	float:left;
+}
+.login-form .input-form input{
+	width:75%;
+	height:30px;
+	margin-top:10px;
+	padding:5px;
+	display:inline-block;
+	float:left;
+}
+
+.login-form .submit-form{
+	width:100%;
+	height:60px;
+	margin:90px auto 0;
+	text-align:center;
+	line-height:60px;
+	background:RGB(135,206,235) ;
+}

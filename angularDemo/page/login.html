@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <script src="../js/angular.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../css/login.css">
+   <title>登录</title>
+   </head>
+   <body ng-app="myapp">
+      <div ng-controller="LoginController" class="login-form">
+        <h2>登录</h2>
+        <div class="input-form cc">
+          <label>用户名</label>
+          <input type="text" ng-model="username" placeholder="请输入用户名" />
+        </div>
+        <div class="input-form cc">
+          <label>密码</label>
+          <input type="password" ng-model="password" placeholder="请输入密码" />
+        </div>
+        <div class="submit-form cc" ng-click="confirm()">
+          提交
+        </div>
+      </div>
+      <script>
+          angular.module("myapp", [])
+          .controller("LoginController", function($scope) {
+            $scope.confirm = function() {
+              if($scope.username == '' || $scope.username == undefined){
+                alert("请输入用户名");
+              }else if($scope.password == '' || $scope.password == undefined){
+                alert("请输入密码");
+              }else{
+                if($scope.username == 'Xie' && $scope.password == '123456'){
+                  // location.href="https://www.baidu.com/"
+                  location.href="main.html";
+                }else{
+                  alert("用户名或密码出错！");
+                }
+              }
+            }
+          });  
+      </script>
+   </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <script src="./js/angular.min.js"></script>
+   <title>第一个AngularJS程序</title>
+   <style type="text/css">
+    ul{
+      padding: 0px;
+    }
+    ul li{
+      list-style: none;
+    }
+   </style>
+   </head>
+   <body ng-app="myapp">
+      <div ng-controller="HelloController" >
+        <h2>你好 ！第一个{{helloTo.title}}程序示例</h2>
+        <div>
+          <p>用户列表 ({{userList.length}}):</p>
+          <input type="search" ng-model="keyword" placeholder="搜索" />
+          <ul>
+            <li ng-repeat="list in userList | filter:keyword">
+              [{{$index + 1}}] {{list.name}} .
+            </li>
+          </ul>
+        </div>
+      </div>
+      <script>
+         angular.module("myapp", [])
+          .controller("HelloController", function($scope) {
+            $scope.helloTo = {};
+            $scope.helloTo.title = "AngularJS";
+            $scope.userList = [
+              {name:'John', age:25, gender:'boy'},
+              {name:'Jessie', age:30, gender:'girl'},
+              {name:'Johanna', age:28, gender:'girl'},
+              {name:'Joy', age:15, gender:'girl'},
+              {name:'Mary', age:28, gender:'girl'},
+              {name:'Peter', age:95, gender:'boy'},
+              {name:'Sebastian', age:50, gender:'boy'},
+              {name:'Erika', age:27, gender:'girl'},
+              {name:'Patrick', age:40, gender:'boy'},
+              {name:'Samantha', age:60, gender:'girl'}
+            ]
+          });  
+      </script>
+   </body>
+</html>
